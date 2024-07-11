@@ -14,7 +14,7 @@ def menu():
         print("4. Reporte de sueldos")
         print("5. Salir del programa")
 
-        opc =int(input("Ingrese una opción: "))
+        opc = Validar_opc()
         
         if opc==1:
             Asignar_sueldos()
@@ -31,7 +31,7 @@ def menu():
 def Asignar_sueldos():
     os.system('cls')
     print("ASIGNAR SUELDOS ALEATORIOS")
-    time.sleep(3)
+    
     for x in range(10):
         Sueldos_aleatorios = random.randint(300000,2500000)
         desc_salud = Sueldos_aleatorios * 0.07
@@ -49,7 +49,7 @@ def Asignar_sueldos():
 
         sueldos_trabajadores.append(sueldo_trabajador)
     print("Se han generado los sueldos...")
-    time.sleep(3)
+   
 
 def Clasificar_sueldos():
     os.system('cls')
@@ -60,7 +60,16 @@ def Clasificar_sueldos():
         print("CLASIFICACION SUELDOS")
         print()
         print("Sueldos menores a $800.000") 
+        print()
         print("Nombre empleado   Sueldo")
+
+        total = 0
+        for tra in sueldos_trabajadores:
+            if tra["sueldo"]<800000: 
+                total +=1
+        print(f"TOTAL: {total}")
+        print()
+
         for tra in sueldos_trabajadores:
             if tra["sueldo"]<800000: 
                 print(f"{tra["nombre"]}       {tra["sueldo"]}")
@@ -68,7 +77,16 @@ def Clasificar_sueldos():
 
         print()
         print("Sueldos entre $800.000 y $2.000.000") 
+        print()
         print("Nombre empleado   Sueldo")
+
+        total = 0
+        for tra in sueldos_trabajadores:
+            if tra["sueldo"]>800000 and tra["sueldo"]<2000000:
+                total +=1
+        print(f"TOTAL: {total}")
+        print()
+
 
         for tra in sueldos_trabajadores:
             if tra["sueldo"]>800000 and tra["sueldo"]<2000000:
@@ -77,7 +95,16 @@ def Clasificar_sueldos():
 
         print()
         print("Sueldos superiores a $2.000.000") 
+        print()
         print("Nombre empleado   Sueldo")
+
+        total = 0
+        for tra in sueldos_trabajadores:
+            if tra["sueldo"]>2000000:
+                total +=1
+        print(f"TOTAL: {total}")
+        print()
+
 
         for tra in sueldos_trabajadores:
             if tra["sueldo"]>2000000:
@@ -93,13 +120,19 @@ def ver_estadisticas():
         print()
         print()
         print()
+        promedio = 0
         for pro in sueldos_trabajadores:
-            promedio = promedio + pro["sueldo"]
-            promedio_final = promedio /10
+            promedio += pro["sueldo"]
+            
+        promedio_final = promedio/10
         print(f"El promedio de los sueldos es: {promedio_final}")
         print()
+        acumulador = 0
         for mg in sueldos_trabajadores:
-            pass
+            
+            acumulador = acumulador * mg["sueldo"]
+        Media_geometrica = acumulador^(1/10)
+        print(f"La media geometrica es: {Media_geometrica}")
 
 
 
@@ -117,16 +150,22 @@ def reporte_sueldos():
 
     
         
-
-
-
-
-
 def salir_programa():
     print("Finalizando programa...")
     print("Desarrollado por ")
     print("RUT ")
     exit()
+
+def Validar_opc():
+    while True:
+        try:
+            opc = int(input("Ingrese una opción: "))
+            if opc in (1,2,3,4,5):
+                return opc
+            else:
+                print("ERROR! Debe ingresar un número entre el 1 al 5!")
+        except: 
+                print("ERROR! Debe ingresar un número entero!")
     
      
        
