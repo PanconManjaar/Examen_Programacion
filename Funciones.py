@@ -169,8 +169,8 @@ def reporte_sueldos():
         
 def salir_programa():
     print("Finalizando programa...")
-    print("Desarrollado por ")
-    print("RUT ")
+    print("Desarrollado por Diego Marambio")
+    print("RUT 21.910.854-0")
     exit()
 
 def Validar_opc():
