@@ -111,8 +111,12 @@ def Clasificar_sueldos():
         for tra in sueldos_trabajadores:
             if tra["sueldo"]>2000000:
                 print(f"{tra["nombre"]}     ${tra["sueldo"]}")
+        Total = 0
+        for to in sueldos_trabajadores:
+            Total += to["sueldo"]      
+        print(f"TOTAL SUELDOS: ${Total}")
         time.sleep(10)
-        
+
 def ver_estadisticas():
     os.system('cls')
     if not sueldos_trabajadores:
