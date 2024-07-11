@@ -56,6 +56,7 @@ def Clasificar_sueldos():
     os.system('cls')
     if not sueldos_trabajadores:
         print("No se han generado los sueldos...")
+        time.sleep(3)
     else:
 
         print("CLASIFICACION SUELDOS")
@@ -113,8 +114,10 @@ def Clasificar_sueldos():
         time.sleep(10)
         
 def ver_estadisticas():
+    os.system('cls')
     if not sueldos_trabajadores:
         print("No se han generado los sueldos...")
+        time.sleep(3)
     else:
         print("ESTADISTICAS SUELDOS")
         print()
@@ -123,31 +126,33 @@ def ver_estadisticas():
             if mas_alto <= alto["sueldo"]:
                 mas_alto = alto["sueldo"]
         print(f"El sueldo mas alto es: {mas_alto}")
-        time.sleep(3)
+        time.sleep(5)
         mas_bajo = 2500000
         for bajo in sueldos_trabajadores:
             if mas_bajo >= bajo["sueldo"]:
                 mas_bajo = bajo["sueldo"]
         print(f"El sueldo mas bajo es: {mas_bajo}")
-        time.sleep(3)
+        time.sleep(5)
         promedio = 0
         for pro in sueldos_trabajadores:
             promedio += pro["sueldo"]
         promedio_final = promedio/10
         print(f"El promedio de los sueldos es: {promedio_final}")
-        time.sleep(3)
+        time.sleep(5)
         acumulador = 0
         for mg in sueldos_trabajadores:
             acumulador = acumulador * mg["sueldo"]
         Media_geometrica = acumulador/10
         print(f"La media geometrica es: {Media_geometrica}")
-        time.sleep(3)
+        time.sleep(5)
 
 
 
 def reporte_sueldos():
+    os.system('cls')
     if not sueldos_trabajadores:
         print("No se han generado los sueldos...")
+        time.sleep(3)
     else:
 
         print("REPORTE DE SUELDOS")
@@ -158,7 +163,7 @@ def reporte_sueldos():
             escritor = csv.DictWriter(archivo,["nombre","sueldo","descuento_salud","descuento_AFP","sueldo_liquido"])
             escritor.writerows(sueldos_trabajadores)
             print("El archivo se a creado exitosamente!")
-    time.sleep(3)
+        time.sleep(3)
 
     
         
