@@ -31,12 +31,12 @@ def menu():
 def Asignar_sueldos():
     os.system('cls')
     print("ASIGNAR SUELDOS ALEATORIOS")
-    
+    time.sleep(3)
     for x in range(10):
         Sueldos_aleatorios = random.randint(300000,2500000)
-        desc_salud = Sueldos_aleatorios * 0.07
-        desc_afp = Sueldos_aleatorios * 0.12
-        sueldo_liquido = Sueldos_aleatorios - (desc_afp + desc_salud)
+        desc_salud = int(Sueldos_aleatorios * 0.07)
+        desc_afp = int(Sueldos_aleatorios * 0.12)
+        sueldo_liquido = int(Sueldos_aleatorios - (desc_afp + desc_salud))
 
         sueldo_trabajador= {"nombre":trabajadores_base[x],
                             "sueldo":Sueldos_aleatorios,
@@ -49,6 +49,7 @@ def Asignar_sueldos():
 
         sueldos_trabajadores.append(sueldo_trabajador)
     print("Se han generado los sueldos...")
+    time.sleep(3)
    
 
 def Clasificar_sueldos():
@@ -72,7 +73,7 @@ def Clasificar_sueldos():
 
         for tra in sueldos_trabajadores:
             if tra["sueldo"]<800000: 
-                print(f"{tra["nombre"]}       {tra["sueldo"]}")
+                print(f"{tra["nombre"]}     ${tra["sueldo"]}")
         time.sleep(10)
 
         print()
@@ -90,7 +91,7 @@ def Clasificar_sueldos():
 
         for tra in sueldos_trabajadores:
             if tra["sueldo"]>800000 and tra["sueldo"]<2000000:
-                print(f"{tra["nombre"]}       {tra["sueldo"]}")
+                print(f"{tra["nombre"]}     ${tra["sueldo"]}")
         time.sleep(10)
 
         print()
@@ -108,7 +109,7 @@ def Clasificar_sueldos():
 
         for tra in sueldos_trabajadores:
             if tra["sueldo"]>2000000:
-                print(f"{tra["nombre"]}       {tra["sueldo"]}")
+                print(f"{tra["nombre"]}     ${tra["sueldo"]}")
         time.sleep(10)
         
 def ver_estadisticas():
@@ -117,22 +118,30 @@ def ver_estadisticas():
     else:
         print("ESTADISTICAS SUELDOS")
         print()
-        print()
-        print()
-        print()
+        mas_alto=0
+        for alto in sueldos_trabajadores:
+            if mas_alto <= alto["sueldo"]:
+                mas_alto = alto["sueldo"]
+        print(f"El sueldo mas alto es: {mas_alto}")
+        time.sleep(3)
+        mas_bajo = 2500000
+        for bajo in sueldos_trabajadores:
+            if mas_bajo >= bajo["sueldo"]:
+                mas_bajo = bajo["sueldo"]
+        print(f"El sueldo mas bajo es: {mas_bajo}")
+        time.sleep(3)
         promedio = 0
         for pro in sueldos_trabajadores:
             promedio += pro["sueldo"]
-            
         promedio_final = promedio/10
         print(f"El promedio de los sueldos es: {promedio_final}")
-        print()
+        time.sleep(3)
         acumulador = 0
         for mg in sueldos_trabajadores:
-            
             acumulador = acumulador * mg["sueldo"]
-        Media_geometrica = acumulador^(1/10)
+        Media_geometrica = acumulador/10
         print(f"La media geometrica es: {Media_geometrica}")
+        time.sleep(3)
 
 
 
@@ -145,8 +154,11 @@ def reporte_sueldos():
 
         nombre_archivo = input("Ingrese nombre archivo: ")+".csv"
         with open(nombre_archivo,"w",newline="") as archivo:
+            
             escritor = csv.DictWriter(archivo,["nombre","sueldo","descuento_salud","descuento_AFP","sueldo_liquido"])
             escritor.writerows(sueldos_trabajadores)
+            print("El archivo se a creado exitosamente!")
+    time.sleep(3)
 
     
         
